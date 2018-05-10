@@ -1,0 +1,47 @@
+﻿@model List<调用webapi.Models.MoStudent>
+
+
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js">
+</script>
+
+
+
+
+<div class="row">
+    <h3>学生信息列表</h3>
+    <hr />
+
+    <h4>后台请求接口</h4>
+
+    @using (Html.BeginForm())
+    {
+       
+        <hr />
+
+        <table id="tab01" class="table table-hover table-bordered text-center">
+            <thead>
+                <tr>
+                    <td>学生编号</td>
+                    <td>姓名</td>
+                    <td>性别</td>
+                    <td>出生日期</td>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Name</td>
+                        <td>@(item.Sex ? "男" : "女")</td>
+                        <td>@item.Birthday.ToString("yyyy.MM.dd")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    }
+</div>
+
+

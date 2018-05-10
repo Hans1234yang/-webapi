@@ -1,0 +1,73 @@
+﻿@model List<调用webapi.Models.MoStudent>
+
+
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js">
+</script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#btnSearch").click(function () {
+            var tabObj = $("#tab tbody");
+            var uri = 'http://localhost:59641/test/all01_2';
+            $.getJSON(uri)
+                .done(function (data) {
+
+                    debugger
+                    var tabHtml = [];
+                    $.each(data, function (i, item) {
+                        
+                        tabHtml.push('<tr>');
+
+                        tabHtml.push("<td>" + item.Id + "</td>");
+                        tabHtml.push("<td>" + item.Name + "</td>");
+                        tabHtml.push("<td>" + (item.Sex ? "男" : "女") + "</td>");
+                        tabHtml.push("<td>" + item.Birthday + "</td>");
+                        tabHtml.push('</tr>');
+
+                    });
+                    $("#content").html(tabHtml);
+                });
+        });
+
+    });
+
+
+
+
+
+
+</script>
+
+
+<div class="row">
+    <h3>学生信息列表</h3>
+    <hr />
+
+    <h4>后台请求接口</h4>
+
+
+    <button class="btn btn-default" type="submit" id="btnSearch">查询</button>
+   
+    <hr />
+
+    <table id="tab01" class="table table-hover table-bordered text-center">
+        <thead>
+            <tr>
+                <td>学生编号</td>
+                <td>姓名</td>
+                <td>性别</td>
+                <td>出生日期</td>
+            </tr>
+        </thead>
+       
+        <tbody id="content">
+            <tr>
+                <td colspan="4"></td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+
